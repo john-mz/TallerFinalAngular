@@ -1,0 +1,65 @@
+<!-- <form [formGroup]="profileForm">
+    <p>password</p>
+      <input type="password" formControlName="password" name="password" />
+      <p>email</p>
+      <input type="email" formControlName="email" name="email" />
+      <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form> -->
+
+<!--
+  This example requires updating your template:
+
+  ```
+  <html class="h-full bg-gray-900">
+  <body class="h-full">
+  ```
+-->
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="mx-auto h-10 w-auto" />
+    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Ingresa a tu cuenta</h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form class="space-y-6" [formGroup]="profileForm">
+      <div>
+        <label for="email" class="block text-sm/6 font-medium text-gray-100">Correo electronico</label>
+        <div class="mt-2">
+          <input id="email" type="email" name="email" formControlName="email" required autocomplete="email" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+          <p *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched" class="text-red-400 text-xs mt-1">
+    Email inválido
+  </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="password" class="block text-sm/6 font-medium text-gray-100">Contraseña</label>
+          <div class="text-sm">
+            <a href="#" class="font-semibold text-indigo-400 hover:text-indigo-300">Olvidaste la contraseña?</a>
+          </div>
+        </div>
+        <div class="mt-2">
+          <input id="password" type="password" name="password" formControlName="password" required autocomplete="current-password" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+           <p *ngIf="profileForm.get('password')?.invalid && profileForm.get('password')?.touched" class="text-red-400 text-xs mt-1">
+    Contraseña inválida
+  </p>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" (click)="login()" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Ingresar</button>
+      </div>
+    </form>
+
+    <p class="mt-10 text-center text-sm/6 text-gray-400">
+      Registrate
+      <a routerLink="/register" class="font-semibold text-indigo-400 hover:text-indigo-300">ahora</a>
+    </p>
+  </div>
+</div>
+
+<!-- <div *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched">
+        <div *ngIf="myForm.get('name')?.errors?.['required']">Name is required.</div>
+        <div *ngIf="myForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters.</div>
+      </div> -->
