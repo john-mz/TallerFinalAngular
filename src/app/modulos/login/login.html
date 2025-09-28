@@ -1,27 +1,21 @@
-<!-- <form [formGroup]="profileForm">
-    <p>password</p>
-      <input type="password" formControlName="password" name="password" />
-      <p>email</p>
-      <input type="email" formControlName="email" name="email" />
-      <button type="submit" [disabled]="!profileForm.valid">Submit</button>
-</form> -->
-
-<!--
-  This example requires updating your template:
-
-  ```
-  <html class="h-full bg-gray-900">
-  <body class="h-full">
-  ```
--->
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="mx-auto h-10 w-auto" />
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" alt="FutureSAS Logo" class="mx-auto mb-6 h-20 w-20 rounded-full shadow-lg" />
     <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Ingresa a tu cuenta</h2>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-6" [formGroup]="profileForm">
+    <form class="space-y-6" [formGroup]="profileForm" (submit)="login()">
+      <div>
+        <label for="username" class="block text-sm/6 font-medium text-gray-100">Username</label>
+        <div class="mt-2">
+          <input id="username" type="username" name="username" formControlName="username" required class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+          <p *ngIf="profileForm.get('username')?.invalid && profileForm.get('username')?.touched" class="text-red-400 text-xs mt-1">
+    Username inválido o contiene espacios en blanco
+  </p>
+        </div>
+      </div>
+
       <div>
         <label for="email" class="block text-sm/6 font-medium text-gray-100">Correo electronico</label>
         <div class="mt-2">
@@ -48,7 +42,7 @@
       </div>
 
       <div>
-        <button type="button" (click)="login()" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Ingresar</button>
+        <button type="submit" [disabled]="profileForm.pending || profileForm.invalid" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 disabled:opacity-50">Ingresar</button>
       </div>
     </form>
 
@@ -58,8 +52,3 @@
     </p>
   </div>
 </div>
-
-<!-- <div *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched">
-        <div *ngIf="myForm.get('name')?.errors?.['required']">Name is required.</div>
-        <div *ngIf="myForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters.</div>
-      </div> -->

@@ -1,1 +1,52 @@
-<p>contact works!</p>
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" alt="FutureSAS Logo" class="mx-auto mb-6 h-20 w-20 rounded-full shadow-lg" />
+    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Contactanos</h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form class="space-y-6" [formGroup]="miFormulario" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="nombre" class="block text-sm/6 font-medium text-gray-100">Nombre</label>
+        <div class="mt-2">
+          <input id="nombre" type="nombre" name="nombre" formControlName="nombre" required class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+          <p *ngIf="miFormulario.get('nombre')?.invalid && miFormulario.get('nombre')?.touched" class="text-red-400 text-xs mt-1">
+    Username inválido o contiene espacios en blanco
+  </p>
+        </div>
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm/6 font-medium text-gray-100">Correo electronico</label>
+        <div class="mt-2">
+          <input id="email" type="email" name="email" formControlName="email" required autocomplete="email" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+          <p *ngIf="miFormulario.get('email')?.invalid && miFormulario.get('email')?.touched" class="text-red-400 text-xs mt-1">
+    Email inválido
+  </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="mensaje" class="block text-sm/6 font-medium text-gray-100">Mensaje</label>
+        </div>
+        <div class="mt-2">
+          <textarea id="mensaje" rows="4" cols="50" name="mensaje" formControlName="mensaje" required class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"></textarea>
+           <p *ngIf="miFormulario.get('mensaje')?.invalid && miFormulario.get('mensaje')?.touched" class="text-red-400 text-xs mt-1">
+    Mensaje invalido
+  </p>
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" [disabled]="miFormulario.invalid" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Ingresar</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<!-- <div *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched">
+        <div *ngIf="myForm.get('name')?.errors?.['required']">Name is required.</div>
+        <div *ngIf="myForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters.</div>
+      </div> -->

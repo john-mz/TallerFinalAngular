@@ -1,72 +1,110 @@
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" class="mx-auto h-10 w-auto dark:hidden" />
-    <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="mx-auto h-10 w-auto not-dark:hidden" />
-    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">Sign up for your account</h2>
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" alt="FutureSAS Logo" class="mx-auto mb-6 h-20 w-20 rounded-full shadow-lg" />
+
+    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">
+      Sign up for your account
+    </h2>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
     <form class="space-y-6" [formGroup]="form">
-  <div>
-    <label for="nombre" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100">Nombre</label>
-    <div class="mt-2">
-      <input id="nombre" formControlName="nombre" name="nombre" type="text" required autocomplete="name"
-        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 ..." />
-      <p *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched" class="text-red-500 text-xs mt-1">
-        El nombre es obligatorio.
-      </p>
-    </div>
-  </div>
+      
+      <!-- Nombre -->
+      <div>
+        <label for="nombre" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100">
+          Nombre
+        </label>
+        <div class="mt-2">
+          <input id="nombre" formControlName="nombre" name="nombre" type="text" required autocomplete="name"
+                 class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+          <p *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched"
+             class="text-red-500 text-xs mt-1">
+            El nombre es obligatorio.
+          </p>
+        </div>
+      </div>
 
-  <div>
-    <label for="edad" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100">Edad</label>
-    <div class="mt-2">
-      <input id="edad" formControlName="edad" name="edad" type="number" required autocomplete="age"
-        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 ..." />
-      <p *ngIf="form.get('edad')?.invalid && form.get('edad')?.touched" class="text-red-500 text-xs mt-1">
-        La edad es obligatoria.
-      </p>
-    </div>
-  </div>
+      <!-- Edad -->
+      <div>
+        <label for="edad" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100">
+          Edad
+        </label>
+        <div class="mt-2">
+          <input id="edad" formControlName="edad" name="edad" type="number" required autocomplete="age"
+                 class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+          <p *ngIf="form.get('edad')?.invalid && form.get('edad')?.touched"
+             class="text-red-500 text-xs mt-1">
+            La edad es obligatoria.
+          </p>
+        </div>
+      </div>
 
-  <div>
-    <label for="email" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100">Correo electronico</label>
-    <div class="mt-2">
-      <input id="email" formControlName="email" type="email" name="email" required autocomplete="email"
-        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 ..." />
-      <p *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched" class="text-red-500 text-xs mt-1">
-        El correo electrónico es obligatorio.
-      </p>
-      <p *ngIf="form.get('email')?.errors?.['email'] && form.get('email')?.touched" class="text-red-500 text-xs mt-1">
-        El correo electrónico no es válido.
-      </p>
-    </div>
-  </div>
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100">
+          Correo electrónico
+        </label>
+        <div class="mt-2">
+          <input id="email" formControlName="email" type="email" name="email" required autocomplete="email"
+                 class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"/>
+          
+          <!-- Required + Invalid Format -->
+          <p *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched"
+             class="text-red-500 text-xs mt-1">
+            El correo electrónico es obligatorio.
+          </p>
+          <p *ngIf="form.get('email')?.errors?.['email'] && form.get('email')?.touched"
+             class="text-red-500 text-xs mt-1">
+            El correo electrónico no es válido.
+          </p>
 
-  <div>
-    <label for="password" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100">Contraseña</label>
-    <div class="mt-2">
-      <input id="password" formControlName="password" type="password" name="password" required autocomplete="current-password"
-        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 ..." />
-      <p *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched" class="text-red-500 text-xs mt-1">
-        La contraseña es obligatoria.
-      </p>
-      <p *ngIf="form.get('password')?.errors?.['minlength'] && form.get('password')?.touched" class="text-red-500 text-xs mt-1">
-        La contraseña debe tener al menos 6 caracteres.
-      </p>
-    </div>
-  </div>
+          <!-- Pending State (Async Validator Running) -->
+          <p *ngIf="form.get('email')?.pending"
+             class="text-blue-500 text-xs mt-1">
+            Verificando disponibilidad del correo...
+          </p>
 
-  <div>
-    <button type="button" (click)="onSubmit()" [disabled]="form.invalid"
-      class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white ...">
-      Sign up
-      </button>
-  </div>
-</form>
+          <!-- Async Validator Error -->
+          <p *ngIf="form.get('email')?.errors?.['emailTaken'] && !form.get('email')?.pending"
+             class="text-red-500 text-xs mt-1">
+            Este correo ya está registrado.
+          </p>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100">
+          Contraseña
+        </label>
+        <div class="mt-2">
+          <input id="password" formControlName="password" type="password" name="password" required autocomplete="current-password"
+                 class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+          <p *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched"
+             class="text-red-500 text-xs mt-1">
+            La contraseña es obligatoria.
+          </p>
+          <p *ngIf="form.get('password')?.errors?.['minlength'] && form.get('password')?.touched"
+             class="text-red-500 text-xs mt-1">
+            La contraseña debe tener al menos 6 caracteres.
+          </p>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <button type="button" (click)="onSubmit()" [disabled]="form.pending || form.invalid" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-500 disabled:opacity-50">
+          Sign up
+        </button>
+      </div>
+    </form>
 
     <p class="mt-10 text-center text-sm/6 text-gray-500 dark:text-gray-400">
       Already a member?
-      <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">Sign in</a>
+      <a href="" class="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
+        Sign in
+      </a>
     </p>
   </div>
+</div>

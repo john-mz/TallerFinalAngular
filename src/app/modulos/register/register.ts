@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { AccesosService } from '../../servicios/accesos.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { EmailAsyncValidatorService } from '../../servicios/email-async-validator.service';
 
 @Component({
   selector: 'app-register',
@@ -11,14 +12,20 @@ import { CommonModule } from '@angular/common';
   styleUrl: './register.css'
 })
 export class Register {
-  constructor(private router: Router, private AccesosService: AccesosService){}
+  form: FormGroup;
 
-  form = new FormGroup({
-    nombre: new FormControl('', Validators.required),
-    edad: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)])
-  });
+  constructor(private router: Router, private AccesosService: AccesosService, private emailValidator: EmailAsyncValidatorService){
+    this.form = new FormGroup({
+      nombre: new FormControl('', Validators.required),
+      edad: new FormControl('', [Validators.required]),
+      email: new FormControl(
+        '',
+        [Validators.required, Validators.email],
+        [this.emailValidator.validate.bind(this.emailValidator)]
+      ),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    });
+  }
 
   onSubmit(){
     if (this.form.valid){

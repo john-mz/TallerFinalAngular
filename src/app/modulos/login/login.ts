@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import {EmailValidator, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {AbstractControl, EmailValidator, FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, ValidationErrors, Validators} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AccesosService } from '../../servicios/accesos.service';
 
@@ -18,25 +18,43 @@ interface datos {
   styleUrl: './login.css'
 })
 export class Login {
-  acceso: datos[] = [];
+  profileForm = new FormGroup({
+    username: new FormControl<string>('', [Validators.required, this.validarUsername]),
+    password: new FormControl<string>('', [Validators.required, Validators.minLength(6)]),
+    email: new FormControl<string>('', [Validators.required, Validators.email])
+  });
+
+  acceso: datos[] = []
   
   // accesos = [{password: "123456789", email: "johnstiven40@gmail.com"}, {password: "123456789", email: "john.munoz@uam.edu.co"}];
 
   constructor(private router: Router, private AccesosService: AccesosService) {
     this.acceso = AccesosService.consultar();
+
   }
 
-  profileForm = new FormGroup({
-    password: new FormControl<string>('', [Validators.required, Validators.minLength(6)]),
-    email: new FormControl<string>('', [Validators.required, Validators.email])
-  });
+  
+
+  validarUsername(control: AbstractControl<string>): ValidationErrors | null{
+    const valor = control.value;
+    if (valor.includes(" ")){
+      return {usernameInvalido: true};
+    }
+    return null;
+  }
 
   login(): void {
+  const username = this.profileForm.get('username')?.value;
   const email = this.profileForm.get('email')?.value;
   const password = this.profileForm.get('password')?.value;
 
-  if (!email || !password) {
-    alert("No ingresaste nada");
+  if (!email || !password || !username) {
+    alert("No ingresaste nada en uno o varios campos");
+    return;
+  }
+
+  if (username.includes(" ")){
+    alert("Username con errores");
     return;
   }
 
@@ -50,5 +68,9 @@ export class Login {
     alert("Datos incorrectos");
   }
 
+  }
+
+  get campo(){
+    return this.profileForm.controls;
   }
 }

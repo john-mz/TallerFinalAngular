@@ -24,4 +24,8 @@ export class AccesosService {
     this.accesos.push({nombre: nombre, edad: edad, email: email, password: password});
   }
 
+  verificarCorreo(email: string): boolean{
+    return this.accesos.some(acceso => acceso.email == email);
+  }
+
 }
